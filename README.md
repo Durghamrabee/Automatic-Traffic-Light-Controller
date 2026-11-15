@@ -16,6 +16,13 @@ A two-direction traffic light controller built in **Zelio Soft 2** using Ladder 
 
 - [Zelio Soft 2 project](project/Automatic_Traffic_Light_Controller.zm2) — editable Ladder Diagram program.
 - [Full program report](docs/Automatic%20Traffic%20Light%20Controller.pdf) — module settings, ladder rungs, I/O assignments, timers, and LCD configuration.
+- **[Ladder diagram, page 2](docs/ladder-diagram-part-1.png)** · **[Ladder diagram, page 3](docs/ladder-diagram-part-2.png)**
+
+### Ladder logic preview
+
+![Zelio ladder diagram, rungs 001–020](docs/ladder-diagram-part-1.png)
+
+![Zelio ladder diagram, rungs 021–037](docs/ladder-diagram-part-2.png)
 
 ## How the controller works
 
@@ -45,22 +52,6 @@ The six **Function A** timers have a combined preset of **30 seconds** per cycle
 | `Q6` | Direction B red |
 
 Rung `R037` enables text block `X1` through coil `TX1` while `M1` is active. The block is configured to display **DURGHAM RABEE ECE** on the Zelio LCD.
-
-## Ladder diagram
-
-<details>
-<summary>Part 1 · Rungs 001–020</summary>
-
-![Rungs 001–020 showing the enable input, start pulse, and the sequence through B green](docs/ladder-diagram-part-1.png)
-
-</details>
-
-<details>
-<summary>Part 2 · Rungs 021–037</summary>
-
-![Rungs 021–037 showing B yellow, the second all-red stage, the lamp outputs, and LCD control](docs/ladder-diagram-part-2.png)
-
-</details>
 
 ## Simulate in Zelio Soft 2
 
