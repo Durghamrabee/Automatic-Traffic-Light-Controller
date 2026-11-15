@@ -59,3 +59,15 @@ Rung `R037` enables text block `X1` through coil `TX1` while `M1` is active. The
 2. Turn on `I1` and watch `Q1`–`Q6` through a full cycle. Check that `Q3` and `Q6` are on during each all-red interval and that the sequence repeats from A green.
 3. Toggle `I1` off and back on to observe the stop and restart behavior.
 4. With `I1` on, open the simulated LCD to inspect the text from `X1`.
+
+## Verification and safety
+
+The sequence and timer values above describe the **documented PLC program**. Simulation instructions are provided, but no independently verified physical installation or road-traffic commissioning is claimed.
+
+**Educational demonstration only.** The logic is not a certified traffic-signal controller and does not implement the independent fail-safe monitoring, fault-response architecture, or regulatory requirements needed for public-road deployment. The inactive watchdog setting must not be interpreted as an acceptable safety configuration for real traffic control.
+
+## Author and rights
+
+**Durgham Rabee** — Electronics & Communications Engineering. © 2026. All rights reserved unless otherwise stated.
+
+[Engineering portfolio](https://github.com/Durghamrabee)
