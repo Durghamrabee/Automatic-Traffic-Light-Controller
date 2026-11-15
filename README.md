@@ -1,32 +1,38 @@
 # Automatic Traffic Light Controller
 
-A two-direction traffic light controller written in Ladder Diagram for the Schneider Electric Zelio Logic SR3B262BD. The program cycles automatically through green, yellow, and all-red phases for directions A and B.
+A two-direction traffic light controller built in **Zelio Soft 2** using Ladder Diagram (LD). It alternates right of way between directions A and B, with an all-red clearance interval before each changeover.
 
-**Author** Durgham Rabee ECE
-
-**Version** 1.0
+| Project information | Details |
+| --- | --- |
+| Author | Durgham Rabee ECE |
+| Version | 1.0 |
+| Controller | Schneider Electric Zelio Logic SR3B262BD |
+| Program cycle time | 18 ms (9 × 2 ms) |
+| Hardware input filter | Slow (3 ms) |
+| Watchdog action | Inactive |
+| Zx keys | Inactive |
 
 ## Project files
 
-- [Zelio Soft 2 project](project/Automatic_Traffic_Light_Controller.zm2) — editable ladder program.
-- [Program documentation](docs/Automatic%20Traffic%20Light%20Controller.pdf) — ladder diagram, I/O assignments, timer settings, and LCD text block.
+- [Zelio Soft 2 project](project/Automatic_Traffic_Light_Controller.zm2) — editable Ladder Diagram program.
+- [Full program report](docs/Automatic%20Traffic%20Light%20Controller.pdf) — module settings, ladder rungs, I/O assignments, timers, and LCD configuration.
 
-## Operating sequence
+## How the controller works
 
-Turning on `I1` enables the system. A one-scan start pulse initiates the A green stage. The stage relays and timers advance the sequence, and the second all-red stage leads back to A green.
+The `I1` enable input drives the run relay `M1`. On enable, `MB` holds the previous run state so `MC` can generate a one-scan start pulse. This pulse starts the A green stage. Stage relays `M2`–`M7` drive the lamps and their associated timers. When the second all-red timer finishes, the program returns to A green automatically.
 
-| Stage relay | Direction A | Direction B | Timer | Duration |
-| --- | --- | --- | --- | --- |
-| `M2` | Green | Red | `T1` | 10 s |
-| `M3` | Yellow | Red | `T2` | 3 s |
-| `M4` | Red | Red | `T3` | 2 s |
-| `M5` | Red | Green | `T4` | 10 s |
-| `M6` | Red | Yellow | `T5` | 3 s |
-| `M7` | Red | Red | `T6` | 2 s |
+| Stage | Direction A | Direction B | Relay | Timer | Preset |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Green | Red | `M2` | `T1` | 10 s |
+| 2 | Yellow | Red | `M3` | `T2` | 3 s |
+| 3 | Red | Red | `M4` | `T3` | 2 s |
+| 4 | Red | Green | `M5` | `T4` | 10 s |
+| 5 | Red | Yellow | `M6` | `T5` | 3 s |
+| 6 | Red | Red | `M7` | `T6` | 2 s |
 
-The timer settings total 30 seconds per cycle. Each direction change includes a 2-second interval with both signals red.
+The six **Function A** timers have a combined preset of **30 seconds** per cycle. Both red outputs are on during each **2-second** clearance interval.
 
-## Input and outputs
+## I/O and LCD
 
 | Address | Function |
 | --- | --- |
@@ -38,10 +44,27 @@ The timer settings total 30 seconds per cycle. Each direction change includes a 
 | `Q5` | Direction B yellow |
 | `Q6` | Direction B red |
 
+Rung `R037` enables text block `X1` through coil `TX1` while `M1` is active. The block is configured to display **DURGHAM RABEE ECE** on the Zelio LCD.
+
+## Ladder diagram
+
+<details>
+<summary>Part 1 · Rungs 001–020</summary>
+
+![Rungs 001–020 showing the enable input, start pulse, and the sequence through B green](docs/ladder-diagram-part-1.png)
+
+</details>
+
+<details>
+<summary>Part 2 · Rungs 021–037</summary>
+
+![Rungs 021–037 showing B yellow, the second all-red stage, the lamp outputs, and LCD control](docs/ladder-diagram-part-2.png)
+
+</details>
+
 ## Simulate in Zelio Soft 2
 
-1. Download the `.zm2` project and open it in Zelio Soft 2.
-2. Switch to **Simulation** mode and start the simulation.
-3. Turn on `I1` and watch `Q1`–`Q6` through a full cycle. Check that both red outputs are active during each all-red phase and that the sequence returns to A green.
-4. Toggle `I1` off and back on to observe how the program responds to a stop and restart.
-5. With `I1` on, open the simulated LCD to inspect the author text configured in block `X1`.
+1. Open the `.zm2` file, switch to **Simulation** mode, and start the simulation.
+2. Turn on `I1` and watch `Q1`–`Q6` through a full cycle. Check that `Q3` and `Q6` are on during each all-red interval and that the sequence repeats from A green.
+3. Toggle `I1` off and back on to observe the stop and restart behavior.
+4. With `I1` on, open the simulated LCD to inspect the text from `X1`.
