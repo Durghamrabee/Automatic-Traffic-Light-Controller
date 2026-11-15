@@ -8,8 +8,8 @@ A two-direction traffic light controller written in Ladder Diagram for the Schne
 
 ## Project files
 
-- [Zelio Soft 2 project](Automatic_Traffic_Light_Controller.zm2) — editable ladder program.
-- [Program documentation](Automatic%20Traffic%20Light%20Controller.pdf) — ladder diagram, I/O assignments, timer settings, and LCD text block.
+- [Zelio Soft 2 project](project/Automatic_Traffic_Light_Controller.zm2) — editable ladder program.
+- [Program documentation](docs/Automatic%20Traffic%20Light%20Controller.pdf) — ladder diagram, I/O assignments, timer settings, and LCD text block.
 
 ## Operating sequence
 
