@@ -23,8 +23,6 @@ A two-direction traffic light controller built in **Zelio Soft 2** using Ladder 
 - [Full program report](docs/plc-based-automatic-traffic-light-controller-v1.1.pdf) — module settings, ladder rungs, I/O assignments, timers, and LCD configuration.
 - **[Ladder diagram, page 2](docs/ladder/ladder-v1.1-part-1-r001-r020.png)** · **[Ladder diagram, page 3](docs/ladder/ladder-v1.1-part-2-r021-r040.png)** · **[Ladder diagram, page 4](docs/ladder/ladder-v1.1-part-3-r041-r042.png)**
 
-- [File migration manifest](docs/file-manifest.md) - verified original-to-final filename mapping.
-
 ### Ladder logic preview
 
 ![Zelio ladder diagram, rungs 001–020](docs/ladder/ladder-v1.1-part-1-r001-r020.png)
@@ -106,7 +104,6 @@ No hardware video is present in the inspected repository tree or its Git history
 - `project/`: editable Zelio Soft 2 program.
 - `docs/`: V1.1 final report and `ladder/` image extracts.
 - `hardware/photos/`: original hardware photographs with descriptive filenames.
-- [File migration manifest](docs/file-manifest.md): original names, final paths, sizes and checksums.
 
 | Version | Changes |
 | --- | --- |
@@ -114,7 +111,7 @@ No hardware video is present in the inspected repository tree or its Git history
 | V1.1 | Master enable/reset, restart from A green after a registered OFF state; 42 ladder rows and a 20 ms program cycle. |
 | V1.0 | Earlier 37-row program with an 18 ms program cycle, retained in Git history. |
 
-All eight uploaded binary files were copied to their final paths and checked byte-for-byte before the old working-tree paths were removed. The files retain their original Git blob hashes. Previous commits remain accessible; no history was rewritten. See the manifest for links to originals at the pre-organization commit.
+All eight uploaded binary files were copied to their final paths and checked byte-for-byte before the old working-tree paths were removed. The files retain their original Git blob hashes. Previous commits remain accessible; no history was rewritten.
 
 ## Verification and safety
 
